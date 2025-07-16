@@ -23,13 +23,20 @@ public class KnifeBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        Debug.Log(player.gameOver);
+        if (!player.gameOver)
         {
-            //Take Player's Speed to apply to the knife
-            knifeSpeed = player.speed;
+#if !UNITY_EDITOR
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+#endif
+if(Input.GetMouseButton(0))
+            {
+                //Take Player's Speed to apply to the knife
+                knifeSpeed = player.speed;
 
-            //Shoot the Knife Up
-            StartCoroutine(MoveKnife(new Vector3(0, 0, 0)));
+                //Shoot the Knife Up
+                StartCoroutine(MoveKnife(new Vector3(0, 0, 0)));
+            }
         }
         
     }

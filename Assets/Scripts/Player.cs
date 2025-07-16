@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     public WoodBoardBehavior woodBoard;
     public int knifeCount;
     public int knifeLimit;
-    // Start is called before the first frame update
+
+    public bool gameOver;
 
     public void Awake()
     {
@@ -35,6 +36,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameOver = false;
+
         //Load knife Pool
         knifePool.InitializePool();
         LoadNextKnife();
@@ -51,6 +54,7 @@ public class Player : MonoBehaviour
     
     public void LoadNextKnife()
     {
+       
        //Load knife if it hasnt reach the limit
         if (knifeCount < knifeLimit)
         {
@@ -90,6 +94,8 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
+        gameOver = true;
+
         //Cache Player's record from Prefs
         int record = PlayerPrefs.GetInt("record");
 
